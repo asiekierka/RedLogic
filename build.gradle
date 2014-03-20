@@ -17,6 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
+file "build.properties" withReader {
+    def prop = new Properties()
+    prop.load(it)
+    ext.config = new ConfigSlurper().parse prop
+}
+
 version = "58.0.0"
 group= "mods.immibis.redlogic" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "RedLogic"
@@ -56,4 +62,27 @@ processResources
 task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'
+}
+
+task apiJar(type: Jar) {
+    from sourceSets.main.java
+    classifier = 'api'
+    include 'mods/immibis/redlogic/api/**'
+}
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+            artifact deobfJar
+            artifact apiJar
+        }
+    }
+    repositories {
+        maven {
+            url "${config.maven.url}"
+        }
+    }
 }
