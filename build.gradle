@@ -52,3 +52,12 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+    manifest {
+        attributes 'FMLCorePlugin': 'pl.asie.lib.core.AsieLibCoremod'
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
+    }
+}
