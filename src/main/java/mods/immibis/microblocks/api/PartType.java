@@ -96,5 +96,5 @@ public interface PartType<PartClass extends Part> {
 	 */
 	public boolean isOpaque();
 	
-	public String getUnlocalizedName(ItemStack is);
+	public String getLocalizedName(ItemStack is);
 }
