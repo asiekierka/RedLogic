@@ -58,8 +58,7 @@ public class GateTile extends TileCoverableBase implements IRedstoneUpdatable, I
 		if(type == null)
 			return null; // should not happen
 		
-		S35PacketUpdateTileEntity p = new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, new NBTTagCompound());
-		NBTTagCompound data = p.func_148857_g();
+		NBTTagCompound data = new NBTTagCompound();		
 		if(getCoverSystem() != null)
 			data.setByteArray("c", getCoverSystem().writeDescriptionBytes());
 		data.setByte("t", (byte)(type.ordinal() | (flipped ? 0x80 : 0)));
@@ -70,7 +69,7 @@ public class GateTile extends TileCoverableBase implements IRedstoneUpdatable, I
 			data.setShort("p", (short)pointer.getPointerPosition());
 			data.setFloat("P", pointer.getPointerSpeed());
 		}
-		return p;
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, data);
 	}
 	
 	@Override

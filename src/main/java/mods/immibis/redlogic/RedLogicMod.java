@@ -40,7 +40,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 
-@Mod(modid="RedLogic", name="RedLogic", version="57.3.1", dependencies="required-after:ImmibisCore")
+@Mod(modid="RedLogic", name="RedLogic", version="58.0.1", dependencies="required-after:ImmibisCore")
 @CobaltiteMod(
 		tiles = {
 				@RegisteredTile(id="immibis.redlogic.gate", tile=GateTile.class, render="mods.immibis.redlogic.gates.GateDynamicRenderer"),

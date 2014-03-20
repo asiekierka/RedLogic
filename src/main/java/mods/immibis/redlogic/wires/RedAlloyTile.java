@@ -301,13 +301,12 @@ public class RedAlloyTile extends WireTile implements IRedstoneEmitter, IRedston
 	
 	@Override
 	public S35PacketUpdateTileEntity getDescriptionPacket() {
-		S35PacketUpdateTileEntity p = super.getDescriptionPacket();
+		NBTTagCompound data = super.getDescriptionPacketTag();
 		if(syncSignalStrength) {
-			NBTTagCompound data = p.func_148857_g();
 			data.setShort("_str", strength);
 			data.setShort("_snwb", strengthFromNonWireBlocks);
 		}
-		return p;
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, getDescriptionPacketTag());
 	}
 	
 	// normal direction -> canConnectRedstone direction parameter

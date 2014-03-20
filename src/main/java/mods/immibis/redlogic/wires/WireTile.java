@@ -226,9 +226,8 @@ public abstract class WireTile extends TileCoverableBase implements IConnectable
 		
 		return true;
 	}
-	
-	@Override
-	public S35PacketUpdateTileEntity getDescriptionPacket() {
+
+	protected NBTTagCompound getDescriptionPacketTag() {
 		//System.out.println(xCoord+" "+yCoord+" "+zCoord+" sdp");
 		
 		NBTTagCompound tag = new NBTTagCompound();
@@ -250,7 +249,12 @@ public abstract class WireTile extends TileCoverableBase implements IConnectable
 				tag.setByte("j", jacketConnectMaskCache);
 		}
 		
-		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+		return tag;
+	}
+	
+	@Override
+	public S35PacketUpdateTileEntity getDescriptionPacket() {
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, getDescriptionPacketTag());
 	}
 	
 	@Override
