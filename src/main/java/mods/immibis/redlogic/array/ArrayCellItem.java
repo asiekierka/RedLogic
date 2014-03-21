@@ -177,7 +177,7 @@ public class ArrayCellItem extends ItemBlock {
 			break;
 		}
 		
-		if(world.getBlock(x,y,z).equals(Block.getBlockFromItem(this))) {
+		if(world.getBlock(x,y,z) instanceof ArrayCellBlock) {
 			ArrayCellTile te = (ArrayCellTile)world.getTileEntity(x, y, z);
 			te.init(ArrayCellType.VALUES[meta], side ^ 1, front);
 			for(Part p : parts)

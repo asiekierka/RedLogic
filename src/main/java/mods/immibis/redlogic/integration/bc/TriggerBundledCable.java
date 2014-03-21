@@ -62,8 +62,10 @@ public class TriggerBundledCable implements ITileTrigger, ITrigger {
 		ItemStack stack = par.getItemStack();
 		if(stack == null || stack.getItem() == null) return -1;
 		
+		// If ItemDye, shortcut
 		if(stack.getItem() instanceof ItemDye) return 15 - stack.getItemDamage();
 		
+		// Try OreDict
 		int oreID = OreDictionary.getOreID(stack);
 		for(int i = 0; i < 16; i++) {
 			if(RecipeDyeLumarButton.dyeOreIDs[i] == oreID) {

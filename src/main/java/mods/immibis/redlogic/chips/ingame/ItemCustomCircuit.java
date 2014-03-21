@@ -23,7 +23,7 @@ public class ItemCustomCircuit extends ItemBlock {
 	}
 	
 	public static String getClassName(ItemStack stack) {
-		if(!stack.getItem().equals(Item.getItemFromBlock(RedLogicMod.customCircuitBlock)))
+		if(!(stack.getItem() instanceof ItemCustomCircuit))
 			return null;
 		if(!stack.hasTagCompound())
 			return null;

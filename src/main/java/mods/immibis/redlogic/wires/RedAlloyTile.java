@@ -157,7 +157,7 @@ public class RedAlloyTile extends WireTile implements IRedstoneEmitter, IRedston
 						notifiedSides |= 1 << dir;
 					}
 					
-					if(worldObj.getBlock(x, y, z).equals(RedLogicMod.wire)) {
+					if(worldObj.getBlock(x, y, z) instanceof WireBlock) {
 						WireTile t = (WireTile)worldObj.getTileEntity(x, y, z);
 						if(t instanceof RedAlloyTile) {
 							((RedAlloyTile)t).updateSignal(update);
@@ -202,8 +202,8 @@ public class RedAlloyTile extends WireTile implements IRedstoneEmitter, IRedston
 			strength = 0;
 			newStrength = getStrengthFromSurroundingBlocks();
 			
-			//if(prevStrength != newStrength)
-			//	System.out.println(xCoord+","+yCoord+","+zCoord+" red alloy update pass; "+prevStrength+" -> "+newStrength);
+			if(prevStrength != newStrength)
+				System.out.println(xCoord+","+yCoord+","+zCoord+" red alloy update pass; "+prevStrength+" -> "+newStrength);
 			
 			if(newStrength < prevStrength) {
 				// this is a huge optimization - it results in a "pulse" of 0 strength being sent down the wire
@@ -222,15 +222,15 @@ public class RedAlloyTile extends WireTile implements IRedstoneEmitter, IRedston
 		
 		isUpdatingStrength = false;
 		
-		//if(startStrength != newStrength)
-		//	System.out.println(xCoord+","+yCoord+","+zCoord+" red alloy update; "+startStrength+" -> "+newStrength);
+		if(startStrength != newStrength)
+			System.out.println(xCoord+","+yCoord+","+zCoord+" red alloy update; "+startStrength+" -> "+newStrength);
 		
 		if(strength != startStrength) {
 			if(!worldObj.isRemote) {
 				notifyExtendedPowerableNeighbours(update);
 			}
 			
-			//System.out.println((worldObj.isRemote ? "client " : wasFirstServerChange ? "was first " : "Not first ") + "change at: " + xCoord+","+yCoord+","+zCoord+", new strength: "+strength+", sfnwb: "+oldStrengthFromNonWireBlocks+" -> "+strengthFromNonWireBlocks);
+			System.out.println((worldObj.isRemote ? "client " : wasFirstServerChange ? "was first " : "Not first ") + "change at: " + xCoord+","+yCoord+","+zCoord+", new strength: "+strength+", sfnwb: "+oldStrengthFromNonWireBlocks+" -> "+strengthFromNonWireBlocks);
 			
 			if(syncSignalStrength && (worldObj.isRemote || wasFirstServerChange || strengthFromNonWireBlocks != oldStrengthFromNonWireBlocks)) {
 				if(!worldObj.isRemote && CommandDebug.WIRE_LAG_PARTICLES)
@@ -239,14 +239,14 @@ public class RedAlloyTile extends WireTile implements IRedstoneEmitter, IRedston
 			}
 			
 		} else if(syncSignalStrength && !worldObj.isRemote && oldStrengthFromNonWireBlocks != strengthFromNonWireBlocks) {
-			//System.out.println("SFNWB change at: " + xCoord+","+yCoord+","+zCoord+", new strength: "+strength+", sfnwb: "+oldStrengthFromNonWireBlocks+" -> "+strengthFromNonWireBlocks);
+			System.out.println("SFNWB change at: " + xCoord+","+yCoord+","+zCoord+", new strength: "+strength+", sfnwb: "+oldStrengthFromNonWireBlocks+" -> "+strengthFromNonWireBlocks);
 			
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			if(CommandDebug.WIRE_LAG_PARTICLES)
 				debugEffect_bonemeal();
 		}
 		
-		if(update.first == this) {
+		if(update != null && update.first == this) {
 			for(XYZ xyz : update.queuedBlockUpdates) {
 				worldObj.notifyBlockOfNeighborChange(xyz.x, xyz.y, xyz.z, RedLogicMod.wire);
 			}
@@ -295,7 +295,8 @@ public class RedAlloyTile extends WireTile implements IRedstoneEmitter, IRedston
 		// It will not send updates for any other pieces that changed as a result.
 		// So we have to simulate that on the client as well.
 		//notifyExtendedNeighbourWiresOnClient();
-		//updateSignal(null);
+		//updateSignal(new RedAlloyUpdateOperation(this));
+		
 		updateConnectedWireSignal(new RedAlloyUpdateOperation(this));
 	}
 	

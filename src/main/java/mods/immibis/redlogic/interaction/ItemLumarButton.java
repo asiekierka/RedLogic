@@ -14,9 +14,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockLumarButtonItem extends ItemBlock {
+public class ItemLumarButton extends ItemBlock {
 	
-	public BlockLumarButtonItem(Block block) {
+	public ItemLumarButton(Block block) {
 		super(block);
 	}
 	

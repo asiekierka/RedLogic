@@ -180,7 +180,7 @@ public class GateItem extends ItemBlock {
 			break;
 		}
 		
-		if(world.getBlock(x, y, z).equals(Block.getBlockFromItem(this))) {
+		if(world.getBlock(x, y, z) instanceof GateBlock) {
 			GateTile te = new GateTile(EnumGates.values()[meta], side ^ 1, front);
 			world.setTileEntity(x, y, z, te);
 			for(Part p : parts)

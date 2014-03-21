@@ -46,6 +46,7 @@ public class RecipeDyeLumarButton implements IRecipe {
 			dyeItems.add(evt.Ore.getItem());
 	}
 	
+	public RecipeDyeLumarButton()
 	{
 		MinecraftForge.EVENT_BUS.register(this);
 		for(String dye : dyeNames)
@@ -62,7 +63,7 @@ public class RecipeDyeLumarButton implements IRecipe {
 		for(int k = 0; k < ic.getSizeInventory(); k++) {
 			ItemStack s = ic.getStackInSlot(k);
 			if(s != null) {
-				if(s.getItem().equals(Item.getItemFromBlock(RedLogicMod.lumarButton))) {
+				if(s.getItem() instanceof ItemLumarButton) {
 					if(buttonDmg != -1)
 						return null;
 					buttonDmg = s.getItemDamage();

@@ -17,7 +17,7 @@ import mods.immibis.redlogic.chips.ingame.*;
 import mods.immibis.redlogic.gates.*;
 import mods.immibis.redlogic.integration.bc.IntegrationBC;
 import mods.immibis.redlogic.interaction.BlockLumarButton;
-import mods.immibis.redlogic.interaction.BlockLumarButtonItem;
+import mods.immibis.redlogic.interaction.ItemLumarButton;
 import mods.immibis.redlogic.interaction.TileLumarButton;
 import mods.immibis.redlogic.lamps.BlockLampCube;
 import mods.immibis.redlogic.lamps.BlockLampNonCube;
@@ -95,7 +95,7 @@ public class RedLogicMod extends ModBase {
 	@AssignedBlock(id="lampCubeIndicatorOff", item=ItemLampCube.class)
 	public static BlockLampCube.IndicatorOff lampCubeIndicatorOff;
 	
-	@AssignedBlock(id="button", item=BlockLumarButtonItem.class)
+	@AssignedBlock(id="button", item=ItemLumarButton.class)
 	public static BlockLumarButton lumarButton;
 	
 	@AssignedBlock(id="lampNonCube", item=BlockLampNonCubeItem.class)

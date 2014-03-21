@@ -227,7 +227,7 @@ public abstract class WireTile extends TileCoverableBase implements IConnectable
 		return true;
 	}
 
-	protected NBTTagCompound getDescriptionPacketTag() {
+	public NBTTagCompound getDescriptionPacketTag() {
 		//System.out.println(xCoord+" "+yCoord+" "+zCoord+" sdp");
 		
 		NBTTagCompound tag = new NBTTagCompound();
