@@ -86,20 +86,22 @@ public class TileLumarButton extends TileCoverableBase {
 		
 		if(pressTicks > 0) {
 			switch(type) {
-			case Normal:
-				--pressTicks;
-				if(pressTicks == 2)
-					updateNeighbours();
-				if(--pressTicks == 0)
-					setPressed(false, isReceivingPower());
-				break;
-			case Latch:
-				--pressTicks;
-				if(pressTicks == 2)
-					updateNeighbours();
-				if(pressTicks == 0)
-					setPressed(isReceivingPower(), isReceivingPower());
-				break;
+				case Normal:
+					--pressTicks;
+					if(pressTicks == 2)
+						updateNeighbours();
+					if(--pressTicks == 0)
+						setPressed(false, isReceivingPower());
+					break;
+				case Latch:
+					--pressTicks;
+					if(pressTicks == 2)
+						updateNeighbours();
+					if(pressTicks == 0)
+						setPressed(isReceivingPower(), isReceivingPower());
+					break;
+				default:
+					break;
 			}
 		}
 	}

@@ -15,6 +15,7 @@ import mods.immibis.redlogic.chips.builtin.RegisterScannables;
 import mods.immibis.redlogic.chips.generated.CCOFactory;
 import mods.immibis.redlogic.chips.ingame.*;
 import mods.immibis.redlogic.gates.*;
+import mods.immibis.redlogic.integration.bc.IntegrationBC;
 import mods.immibis.redlogic.interaction.BlockLumarButton;
 import mods.immibis.redlogic.interaction.BlockLumarButtonItem;
 import mods.immibis.redlogic.interaction.TileLumarButton;
@@ -32,6 +33,7 @@ import mods.immibis.redlogic.wires.WireItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLogic;
 import net.minecraft.world.storage.ISaveHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -137,7 +139,12 @@ public class RedLogicMod extends ModBase {
 		}
 	};
 
-	@EventHandler public void init(FMLInitializationEvent evt) {super._init(evt);}
+	@EventHandler public void init(FMLInitializationEvent evt) {
+		super._init(evt);
+		
+		if(Loader.isModLoaded("BuildCraft|Core"))
+			new IntegrationBC().load();
+	}
 	@EventHandler public void preinit(FMLPreInitializationEvent evt) {super._preinit(evt);}
 
 	@Override

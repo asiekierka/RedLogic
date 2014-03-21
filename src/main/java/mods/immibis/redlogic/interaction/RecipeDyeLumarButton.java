@@ -16,9 +16,9 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class RecipeDyeLumarButton implements IRecipe {
 	
-	private Set<Item> dyeItems = new HashSet<Item>();
+	public static Set<Item> dyeItems = new HashSet<Item>();
 	
-	private static final String[] dyeNames = new String[] {
+	public static final String[] dyeNames = new String[] {
         "dyeBlack",
         "dyeRed",
         "dyeGreen",
@@ -36,9 +36,9 @@ public class RecipeDyeLumarButton implements IRecipe {
         "dyeOrange",
         "dyeWhite"
     };
-	private static final Set<String> dyeNamesSet = new HashSet<String>(Arrays.asList(dyeNames));
+	public static final Set<String> dyeNamesSet = new HashSet<String>(Arrays.asList(dyeNames));
 	
-	private static final int[] dyeOreIDs = new int[16];
+	public static final int[] dyeOreIDs = new int[16];
 	
 	@SubscribeEvent
 	public void onOreDictAdd(OreDictionary.OreRegisterEvent evt) {

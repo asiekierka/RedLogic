@@ -2,12 +2,13 @@ package mods.immibis.redlogic.gates.tests;
 
 import java.io.File;
 import java.io.IOException;
+
 import mods.immibis.redlogic.chips.generated.CCOFactory;
 import mods.immibis.redlogic.gates.EnumGates;
 import mods.immibis.redlogic.gates.GateCompiler;
 import mods.immibis.redlogic.gates.GateLogic;
-
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 public class GateSanityTest {
@@ -76,6 +77,7 @@ public class GateSanityTest {
 	}
 	
 	/** Tests that compiled gates behave the same as interpreted gates */
+	@SuppressWarnings("unused")
 	@Test
 	public void testGateCompilerConsistency() throws IOException {
 		short ON = 255, OFF = 0;

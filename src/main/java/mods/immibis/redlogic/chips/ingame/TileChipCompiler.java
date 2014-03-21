@@ -13,13 +13,19 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.Vec3;
+import mods.immibis.core.TileBasicInventory;
+import mods.immibis.core.api.traits.IEnergyConsumerTrait;
+import mods.immibis.core.api.traits.IEnergyConsumerTrait.EnergyUnit;
+import mods.immibis.core.api.traits.IEnergyConsumerTraitUser;
+import mods.immibis.core.api.traits.TraitField;
 import mods.immibis.core.api.util.Dir;
 import mods.immibis.redlogic.RedLogicMod;
 import mods.immibis.redlogic.chips.compiler.CircuitCompiler;
 
-public class TileChipCompiler extends TilePoweredBase {
+public class TileChipCompiler extends TileBasicInventory implements IEnergyConsumerTraitUser {
 	// slot 0: schematic
 	// slot 1: photomask
+	@TraitField public IEnergyConsumerTrait energy;
 	
 	private int POWER_PER_TICK = 64; // double EU/t cost
 	public final int BYTES_PER_TICK = 1024;
@@ -83,8 +89,8 @@ public class TileChipCompiler extends TilePoweredBase {
 				compileThread = new CompileThread(file);
 			}
 			
-			if(ticksLeft > 0 && (powerStorage >= POWER_PER_TICK || !havePowerSystem)) {
-				powerStorage -= POWER_PER_TICK;
+			if(ticksLeft > 0 && energy.getStoredEnergy() >= (POWER_PER_TICK * 5)) {
+			    energy.useEnergy((POWER_PER_TICK * 5), (POWER_PER_TICK * 5));
 				ticksLeft--;
 			}
 			
@@ -200,5 +206,20 @@ public class TileChipCompiler extends TilePoweredBase {
 
 	public int getFront() {
 		return front;
+	}
+
+	@Override
+	public double EnergyConsumer_getPreferredBufferSize() {
+		return (POWER_PER_TICK * 10);
+	}
+
+	@Override
+	public EnergyUnit EnergyConsumer_getPreferredUnit() {
+		return EnergyUnit.MJ;
+	}
+
+	@Override
+	public boolean EnergyConsumer_isBufferingPreferred() {
+		return true;
 	}
 }

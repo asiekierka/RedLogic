@@ -13,10 +13,20 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.Vec3;
 import mods.immibis.core.ImmibisCore;
+import mods.immibis.core.TileBasicInventory;
+import mods.immibis.core.TileCombined;
+import mods.immibis.core.api.traits.IEnergyConsumerTrait;
+import mods.immibis.core.api.traits.IEnergyConsumerTrait.EnergyUnit;
+import mods.immibis.core.api.traits.IEnergyConsumerTraitUser;
+import mods.immibis.core.api.traits.TraitField;
+import mods.immibis.core.api.traits.UsesTraits;
 import mods.immibis.core.api.util.Dir;
 import mods.immibis.redlogic.RedLogicMod;
 
-public class TileChipFabricator extends TilePoweredBase implements ISidedInventory {
+@UsesTraits
+public class TileChipFabricator extends TileBasicInventory implements ISidedInventory, IEnergyConsumerTraitUser {
+	@TraitField public IEnergyConsumerTrait energy;
+	
 	public TileChipFabricator() {
 		super(4, "chip fabricator");
 	}
@@ -109,8 +119,8 @@ public class TileChipFabricator extends TilePoweredBase implements ISidedInvento
 				progress = 0;
 			} else {
 				
-				if(powerStorage >= POWER_PER_TICK || !havePowerSystem) {
-					powerStorage -= POWER_PER_TICK;
+				if(energy.getStoredEnergy() >= (POWER_PER_TICK * 5)) {
+				    energy.useEnergy((POWER_PER_TICK * 5), (POWER_PER_TICK * 5));
 					progress++;
 				}
 				
@@ -165,5 +175,20 @@ public class TileChipFabricator extends TilePoweredBase implements ISidedInvento
 
 	public int getFront() {
 		return front;
+	}
+
+	@Override
+	public double EnergyConsumer_getPreferredBufferSize() {
+		return (POWER_PER_TICK * 10);
+	}
+
+	@Override
+	public EnergyUnit EnergyConsumer_getPreferredUnit() {
+		return EnergyUnit.MJ;
+	}
+
+	@Override
+	public boolean EnergyConsumer_isBufferingPreferred() {
+		return true;
 	}
 }
