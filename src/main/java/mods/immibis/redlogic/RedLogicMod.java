@@ -21,7 +21,7 @@ import mods.immibis.redlogic.interaction.ItemLumarButton;
 import mods.immibis.redlogic.interaction.TileLumarButton;
 import mods.immibis.redlogic.lamps.BlockLampCube;
 import mods.immibis.redlogic.lamps.BlockLampNonCube;
-import mods.immibis.redlogic.lamps.BlockLampNonCubeItem;
+import mods.immibis.redlogic.lamps.ItemLampNonCube;
 import mods.immibis.redlogic.lamps.ItemLampCube;
 import mods.immibis.redlogic.lamps.TileLampNonCube;
 import mods.immibis.redlogic.recipes.RecipesOriginal;
@@ -42,7 +42,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 
-@Mod(modid="RedLogic", name="RedLogic", version="58.0.1", dependencies="required-after:ImmibisCore")
+@Mod(modid="RedLogic", name="RedLogic", version="58.0.2", dependencies="required-after:ImmibisCore")
 @CobaltiteMod(
 		tiles = {
 				@RegisteredTile(id="immibis.redlogic.gate", tile=GateTile.class, render="mods.immibis.redlogic.gates.GateDynamicRenderer"),
@@ -98,7 +98,7 @@ public class RedLogicMod extends ModBase {
 	@AssignedBlock(id="button", item=ItemLumarButton.class)
 	public static BlockLumarButton lumarButton;
 	
-	@AssignedBlock(id="lampNonCube", item=BlockLampNonCubeItem.class)
+	@AssignedBlock(id="lampNonCube", item=ItemLampNonCube.class)
 	public static BlockLampNonCube lampNonCube;
 	
 	@AssignedBlock(id="plainBlock", item=RLNormalBlockItem.class)

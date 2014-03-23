@@ -23,7 +23,7 @@ file "build.properties" withReader {
     ext.config = new ConfigSlurper().parse prop
 }
 
-version = "58.0.1"
+version = "58.0.2"
 group= "mods.immibis.redlogic" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "RedLogic"
 
@@ -36,7 +36,7 @@ repositories {
 
 dependencies {
     compile 'junit:junit:4.11'
-    compile 'mods.immibis.core:ImmibisCore:58.0.0:deobf'
+    compile 'mods.immibis.core:ImmibisCore:58.0.1:deobf'
 }
 
 minecraft {

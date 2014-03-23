@@ -16,9 +16,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockLampNonCubeItem extends ItemBlock {
+public class ItemLampNonCube extends ItemBlock {
 
-	public BlockLampNonCubeItem(Block block) {
+	public ItemLampNonCube(Block block) {
 		super(block);
 		
 		setHasSubtypes(true);

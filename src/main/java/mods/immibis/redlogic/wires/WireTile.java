@@ -596,7 +596,7 @@ public abstract class WireTile extends TileCoverableBase implements IConnectable
 			throw new IllegalStateException("Not the client.");
 		
 		Block block = worldObj.getBlock(xCoord+dx, yCoord+dy, zCoord+dz);
-		if(block.equals(RedLogicMod.wire))
+		if(block instanceof WireBlock)
 			block.onNeighborBlockChange(worldObj, xCoord+dx, yCoord+dy, zCoord+dz, RedLogicMod.wire);
 	}
 	
@@ -638,7 +638,7 @@ public abstract class WireTile extends TileCoverableBase implements IConnectable
 						notifiedSides |= 1 << side;
 					}
 					
-					if(worldObj.getBlock(x, y, z).equals(RedLogicMod.wire)) {
+					if(worldObj.getBlock(x, y, z) instanceof WireBlock) {
 						RedLogicMod.wire.onNeighborBlockChange(worldObj, x, y, z, RedLogicMod.wire);
 					}
 				}

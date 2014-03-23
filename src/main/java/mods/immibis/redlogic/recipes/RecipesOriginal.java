@@ -11,7 +11,7 @@ import mods.immibis.redlogic.interaction.LumarButtonType;
 import mods.immibis.redlogic.interaction.RecipeDyeLumarButton;
 import mods.immibis.redlogic.interaction.TileLumarButton;
 import mods.immibis.redlogic.lamps.BlockLampNonCube;
-import mods.immibis.redlogic.lamps.BlockLampNonCubeItem;
+import mods.immibis.redlogic.lamps.ItemLampNonCube;
 import mods.immibis.redlogic.wires.EnumWireType;
 import mods.immibis.redlogic.wires.WireDamageValues;
 import net.minecraft.block.Block;
@@ -359,7 +359,7 @@ public class RecipesOriginal {
 				'd', new ItemStack(Items.dye, 1, 15-k),
 				'r', Items.redstone);
 			
-			GameRegistry.addRecipe(BlockLampNonCubeItem.getItemStack(BlockLampNonCube.MODEL_FLAT, LampType.Decorative, k),
+			GameRegistry.addRecipe(ItemLampNonCube.getItemStack(BlockLampNonCube.MODEL_FLAT, LampType.Decorative, k),
 				"GGG",
 				" g ",
 				" d ",
@@ -368,7 +368,7 @@ public class RecipesOriginal {
 				'd', new ItemStack(Items.dye, 1, 15-k),
 				'r', Items.redstone);
 			
-			GameRegistry.addRecipe(BlockLampNonCubeItem.getItemStack(BlockLampNonCube.MODEL_FLAT, LampType.Indicator, k),
+			GameRegistry.addRecipe(ItemLampNonCube.getItemStack(BlockLampNonCube.MODEL_FLAT, LampType.Indicator, k),
 				"GGG",
 				"rdr",
 				'G', Blocks.glass,
@@ -376,7 +376,7 @@ public class RecipesOriginal {
 				'd', new ItemStack(Items.dye, 1, 15-k),
 				'r', Items.redstone);
 			
-			GameRegistry.addRecipe(BlockLampNonCubeItem.getItemStack(BlockLampNonCube.MODEL_FLAT, LampType.Normal, k),
+			GameRegistry.addRecipe(ItemLampNonCube.getItemStack(BlockLampNonCube.MODEL_FLAT, LampType.Normal, k),
 				"GGG",
 				"dgr",
 				'G', Blocks.glass,
@@ -384,7 +384,7 @@ public class RecipesOriginal {
 				'd', new ItemStack(Items.dye, 1, 15-k),
 				'r', Items.redstone);
 			
-			GameRegistry.addRecipe(BlockLampNonCubeItem.getItemStack(BlockLampNonCube.MODEL_CAGE, LampType.Decorative, k),
+			GameRegistry.addRecipe(ItemLampNonCube.getItemStack(BlockLampNonCube.MODEL_CAGE, LampType.Decorative, k),
 				"###",
 				"#d#",
 				" g ",
@@ -394,7 +394,7 @@ public class RecipesOriginal {
 				'r', Items.redstone,
 				'#', Blocks.iron_bars);
 			
-			GameRegistry.addRecipe(BlockLampNonCubeItem.getItemStack(BlockLampNonCube.MODEL_CAGE, LampType.Indicator, k),
+			GameRegistry.addRecipe(ItemLampNonCube.getItemStack(BlockLampNonCube.MODEL_CAGE, LampType.Indicator, k),
 				"###",
 				"#d#",
 				"r r",
@@ -404,7 +404,7 @@ public class RecipesOriginal {
 				'r', Items.redstone,
 				'#', Blocks.iron_bars);
 			
-			GameRegistry.addRecipe(BlockLampNonCubeItem.getItemStack(BlockLampNonCube.MODEL_CAGE, LampType.Normal, k),
+			GameRegistry.addRecipe(ItemLampNonCube.getItemStack(BlockLampNonCube.MODEL_CAGE, LampType.Normal, k),
 				"###",
 				"#d#",
 				"g r",
